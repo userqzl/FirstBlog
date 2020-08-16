@@ -44,7 +44,7 @@ function secondToDate(second) {
 }
 function setTime() {
         /*此处为网站的创建时间*/
-    var create_time = Math.round(new Date(Date.UTC(2020, 06, 20, 18, 01, 01)).getTime() / 1000);
+    var create_time = Math.round(new Date(Date.UTC(2020, 6, 20, 18, 1, 1)).getTime() / 1000);
     var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
     currentTime = secondToDate((timestamp - create_time));
     if(currentTime[0] == 0){

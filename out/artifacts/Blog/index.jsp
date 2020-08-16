@@ -403,6 +403,6 @@
   </div>
 </div>
 
-<script src="./js/index.js" type="text/javascript"></script>
+<script src="./static/js/index.js" type="text/javascript"></script>
 </body>
 </html>
