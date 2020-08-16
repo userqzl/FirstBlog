@@ -359,7 +359,7 @@ nav{
 .footer{
     /*position: absolute;*/
     background-color: rgb(40, 40, 40);
-    height: 200px;
+    /*height: 200px;*/
     width: 100%;
     /*bottom: 0px;*/
 }
