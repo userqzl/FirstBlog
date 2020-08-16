@@ -60,8 +60,7 @@ nav{
 }
 /* 导航栏内容区域 */
 .content{
-    color: #000;
-    font-family: "Microsoft YaHei", 微软雅黑;
+
 }
 
 
@@ -69,6 +68,9 @@ nav{
 .nav_logo{
     float: left;
     margin-left: 20%;
+    margin-right: 5%;
+    color: #000;
+    font-family: "Microsoft YaHei", 微软雅黑;
 }
 
 .logo_img{
@@ -115,6 +117,9 @@ nav{
     display: inline-block;
     height: 60px;
     padding: 0 29px;
+    color: #000;
+    font-family: "Microsoft YaHei", 微软雅黑;
+    font-size: 16px;
 }
 
 .nav_menu li a:hover{
@@ -357,9 +362,10 @@ nav{
 
 /* 页脚 */
 .footer{
+    overflow: hidden;
     /*position: absolute;*/
     background-color: rgb(40, 40, 40);
-    height: 200px;
+    /*height: 200px;*/
     width: 100%;
     /*bottom: 0px;*/
 }
