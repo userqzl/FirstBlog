@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/write_blog.css">
+    <!-- <link rel="stylesheet" href="./lib/md_editor/css/sty" /> -->
+    <link rel="stylesheet" href="static/lib/md_editor/css/editormd.css"/>
+    <link rel="shortcut icon" href="./static/imgs/favicon.ico" type="image/x-icon">
+    <title>写博客</title>
+</head>
+<body>
+<div class="main">
+    <form action="WriteBlog" method="POST">
+        <div class="title">
+            <div class="title_input">
+                <label for="title">标　　题：</label><label><input type="text" name="title" id="title" placeholder="请输入文章标题" required="required"></label><br>
+            </div>
+            <div class="title_input">
+                <label for="author">作　　者：</label><label><input type="text" name="author" id="author" placeholder="作者" required="required"></label><br>
+            </div>
+            <div class="brief">
+                <label for="brief" class="brief_title">简　　介：</label><label><textarea name="brief" id="brief" maxlength="80"  placeholder="简介"></textarea></label><br>
+                <div class="num_count"><span class='two'><span id="textNum">0</span>/80</span></div>
+            </div>
+        </div>
+        <div class="blog_type">
+            <span>文章分类：</span>
+            <input type="radio" name="type" value="technology" checked = "checked"> 技术博客
+            <input type="radio" name="type" value="informal">   随笔<br>
+        </div>
+        <!--            <div class="blog_tags">-->
+        <!--                <span>文章标签：</span>-->
+        <!--                <input type="checkbox" name="blog_tags" value="Java">Java-->
+        <!--                <input type="checkbox" name="blog_tags" value="Spring"> Spring-->
+        <!--                <input type="checkbox" name="blog_tags" value="Spring boot"> Spring boot-->
+        <!--                <input type="checkbox" name="blog_tags" value="Mysql"> Mysql-->
+        <!--            </div>-->
+        <div id="test-editormd">
+            <textarea style="display:none;" name="content"></textarea>
+        </div>
+        <div class="blog_select">
+            <span>是否原创：</span>
+            <select name="is_original">
+                <option value="原创" selected = "selected">原创</option>
+                <option value="转载">转载</option>
+            </select>
+        </div>
+        <div class="submit_blog">
+            <input type="submit" value="发  布">
+        </div>
+    </form>
+</div>
+
+<script src="static/lib/jquery-3.5.1.js"></script>
+<script src="static/lib/md_editor/editormd.min.js"></script>
+<script type="text/javascript">
+    var testEditor;
+
+    $(function() {
+        testEditor = editormd("test-editormd", {
+            width   : "90%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "static/lib/md_editor/lib/"
+        });
+
+        /*
+        // or
+        testEditor = editormd({
+            id      : "test-editormd",
+            width   : "90%",
+            height  : 640,
+            path    : "../lib/"
+        });
+        */
+    });
+</script>
+<script>
+    $('#brief').on("keyup",function(){
+        $('#textNum').text($('#brief').val().length);//这句是在键盘按下时，实时的显示字数
+        if($('#textArea').val().length > 80){
+            $('#textNum').text(80);//长度大于100时0处显示的也只是100
+            $('#brief').val($('#brief').val().substring(0,80));//长度大于100时截取钱100个字符
+        }
+    })
+    $('#textNum').text($('#brief').val().length);//这句是在刷新的时候仍然显示字数
+</script>
+</body>
+</html>
