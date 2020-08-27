@@ -103,7 +103,7 @@
                   <div class="items">
                     <div class="author item">${blogs.author}</div>
                     <div class="date item">${blogs.create_date}</div>
-                    <div class="read item">阅读(124)</div>
+                    <div class="read item">阅读(${blogs.reading})</div>
                   </div>
                 </div>
                   <%--          封面--%>

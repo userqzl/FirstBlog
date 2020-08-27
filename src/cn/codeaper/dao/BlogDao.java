@@ -9,4 +9,5 @@ public interface BlogDao {
     public Blog FindBlogById(String id);
     public List<Blog>FindBlogList(String startPage,String pageNum);
     public String FindBlogTotalCounts();
+    public void reading(String art_id,String ip,String date,String addr);
 }

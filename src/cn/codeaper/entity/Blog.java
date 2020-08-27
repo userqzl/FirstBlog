@@ -19,6 +19,7 @@ public class Blog {
     private String is_original;    //是否原创
     private String brief;       //文章简介
     private String content;     //文章内容
+    private String reading;     //文章阅读量
     public Blog() {
     }
 
@@ -48,7 +49,16 @@ public class Blog {
                 ", is_original='" + is_original + '\'' +
                 ", brief='" + brief + '\'' +
                 ", content='" + content + '\'' +
+                ", reading='" + reading + '\'' +
                 '}';
+    }
+
+    public String getReading() {
+        return reading;
+    }
+
+    public void setReading(String reading) {
+        this.reading = reading;
     }
 
     public String getID() {

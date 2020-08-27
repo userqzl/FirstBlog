@@ -83,7 +83,7 @@
                     <i>
                         <img src="./static/imgs/liulan.png">
                     </i>
-                    <span>126</span>
+                    <span>${blog.reading}</span>
                 </li>
                 <li>
                     <i>

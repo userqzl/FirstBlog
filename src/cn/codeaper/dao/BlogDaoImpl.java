@@ -4,7 +4,6 @@ import cn.codeaper.entity.Blog;
 import cn.codeaper.utils.JDBCUtil;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
 
@@ -104,19 +103,23 @@ public class BlogDaoImpl implements BlogDao {
 //
         //根据id查询数据库(多表查询)
         String sql = "SELECT " +
-        "                t1.id, " +
-                "                t1.create_date," +
-                "                t1.is_delete," +
-                "                t1.title," +
-                "                t1.type," +
-                "                t1.author," +
-                "                t1.original_link," +
-                "                t1.is_original," +
-                "                t2.content" +
-                "                FROM" +
-                "  article_info t1 " +
-                "  INNER JOIN article_conetnt t2 " +
-                "    ON t1.id = t2.b_id  AND id = ?";
+                "  t1.id," +
+                "  t1.create_date," +
+                "  t1.is_delete," +
+                "  t1.title," +
+                "  t1.type," +
+                "  t1.author," +
+                "  t1.original_link," +
+                "  t1.is_original," +
+                "  t2.content," +
+                "  t3.reading " +
+                "FROM" +
+                "  art_visitors_nums t3 " +
+                "  LEFT JOIN article_conetnt t2 " +
+                "    ON t3.art_id = t2.b_id " +
+                "  LEFT JOIN article_info t1 " +
+                "    ON t2.b_id = t1.id " +
+                "where t1.id = ?";
 
         //执行sql，返回结果
 
@@ -135,18 +138,23 @@ public class BlogDaoImpl implements BlogDao {
     public List<Blog> FindBlogList(String startPage,String pageNum) {
 
         //查询数据库(多表查询)
-        String sql = "SELECT t1.id, " +
-                "            t1.create_date," +
-        "                    t1.is_delete," +
-                "            t1.title," +
-                "            t1.type," +
-                "            t1.author," +
-                "            t1.original_link," +
-                "            t1.is_original," +
-                "            t1.brief," +
-                "            t2.content " +
-                "FROM article_info t1 LEFT  JOIN article_conetnt t2 " +
-                "ON t1.id=t2.b_id " +
+        String sql ="SELECT " +
+                "  t1.id," +
+                "  t1.create_date," +
+                "  t1.is_delete," +
+                "  t1.title," +
+                "  t1.type," +
+                "  t1.author," +
+                "  t1.original_link," +
+                "  t1.is_original," +
+                "  t2.content," +
+                "  t3.reading " +
+                "FROM" +
+                "  art_visitors_nums t3 " +
+                "  LEFT JOIN article_conetnt t2 " +
+                "    ON t3.`art_id` = t2.`b_id` " +
+                "  LEFT JOIN article_info t1 " +
+                "    ON t2.`b_id` = t1.`id` " +
                 "ORDER BY t1.create_date DESC " +
                 "LIMIT ?,? ";
 //        limit 0,5
@@ -164,5 +172,13 @@ public class BlogDaoImpl implements BlogDao {
 
         String sql = "select count(*) from article_info";
         return template.queryForObject(sql,String.class);
+    }
+
+    @Override
+    public void reading(String art_id, String ip, String date, String addr) {
+        String sql = "insert into art_visitors (art_id,ip,time,addr) values(?,?,?,?)";
+        String sql_read = "update art_visitors_nums set reading = reading+1 where art_id = ?";
+        template.update(sql,art_id,ip,date,addr);
+        template.update(sql_read,art_id);
     }
 }

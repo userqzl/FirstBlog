@@ -13,4 +13,5 @@ public interface BlogService {
 
     public Page FindBlogsByPage(String currentPage,     //当前页码
                                 String pageNum);        //每页条数
+    public void reading(String art_id,String ip,String date,String addr);  //阅读量统计
 }

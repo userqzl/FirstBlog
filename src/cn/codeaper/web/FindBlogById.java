@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @description: 根据博客id查找博客
@@ -28,14 +30,21 @@ public class FindBlogById extends HttpServlet {
         //设置编码
         req.setCharacterEncoding("utf-8");
         //接收要查询的id
-        String id = req.getParameter("id");
+        String art_id = req.getParameter("id");
+        String ip = req.getRemoteAddr();
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        String addr = req.getRequestURL().toString();
+
+        //调用service的方法，写入数据，并将阅读量+1
+        BlogService service = new BlogServiceImpl();
+        service.reading(art_id,ip,date,addr);
+
         //调用BlogService的
-        BlogService blogService = new BlogServiceImpl();
-        Blog blog = blogService.FindBlogById(id);
+        Blog blog = service.FindBlogById(art_id);
 
         //数据转发到博客详情页
         req.setAttribute("blog",blog);
-        System.out.println(blog);
+        //System.out.println(blog);
         req.getRequestDispatcher("details.jsp").forward(req,resp);
     }
 }

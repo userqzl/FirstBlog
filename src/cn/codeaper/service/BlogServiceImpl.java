@@ -28,10 +28,6 @@ public class BlogServiceImpl implements BlogService {
 
     /**
      * 根据页码查询博客列表
-     * @param currentPage
-     * @param totalCounts
-     * @param pageNum
-     * @return
      */
     @Override
     public Page FindBlogsByPage(String currentPage,String pageNum) {
@@ -54,6 +50,12 @@ public class BlogServiceImpl implements BlogService {
         page.setBlogs(dao.FindBlogList(startPage+"",pageNum));
 
         return page;
+    }
+
+    @Override
+    public void reading(String art_id,String ip,String date,String addr) {
+        //调用dao的reading
+        dao.reading(art_id,ip,date,addr);
     }
 
     @Override
