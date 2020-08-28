@@ -5,7 +5,9 @@ import cn.codeaper.dao.BlogDaoImpl;
 import cn.codeaper.entity.Blog;
 import cn.codeaper.entity.Page;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -57,6 +59,40 @@ public class BlogServiceImpl implements BlogService {
         //调用dao的reading
         dao.reading(art_id,ip,date,addr);
     }
+
+    @Override
+    public void website_visitor(String ip, String date, String OS, String browser, String browser_ver) {
+        dao.website_visitor(ip,date,OS,browser,browser_ver);
+    }
+
+    //统计访问量和访客数
+    @Override
+    public void add_visitor(String ip) {
+        //访问+1
+        dao.add_visitor();
+
+        //如果ip访问过，不做任何事
+        Boolean t = dao.find_ip(ip);
+        System.out.println("t="+t);
+        if(t == true){
+            System.out.println("老访客"+ip);
+        }
+        else {
+            //新访客，访客+1
+            System.out.println("新访客"+ip);
+            dao.add_count();
+        };
+    }
+
+    //查询访客量和访问量
+    @Override
+    public Map<String,Integer> find_visitor() {
+        Map<String,Integer> map = new HashMap<>();
+        map.put("num",dao.find_num());
+        map.put("counts",dao.find_count());
+        return map;
+    }
+
 
     @Override
     public List<Blog> FindBlogList() {

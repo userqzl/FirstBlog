@@ -4,7 +4,10 @@ import cn.codeaper.entity.Blog;
 import cn.codeaper.utils.JDBCUtil;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -181,4 +184,46 @@ public class BlogDaoImpl implements BlogDao {
         template.update(sql,art_id,ip,date,addr);
         template.update(sql_read,art_id);
     }
+
+    @Override
+    public void website_visitor(String ip, String date, String os, String browser, String browser_ver) {
+        String sql = "insert into website_visitors (ip,time,OS,browser,browser_ver) values(?,?,?,?,?)";
+        template.update(sql,ip,date,os,browser,browser_ver);
+    }
+
+    @Override
+    public void add_visitor() {
+        //访问量加1
+        String add_num = "update website_nums set num = num+1 where id = 1001";
+        template.update(add_num);
+    }
+
+    //访客加1
+    public void add_count(){
+        String add_num = "update website_nums set counts = counts+1 where id = 1001";
+        template.update(add_num);
+    }
+
+    public boolean find_ip(String ip){
+        String sql = "SELECT EXISTS(SELECT * FROM website_visitors WHERE ip = ?)";
+        Boolean t= template.queryForObject(sql,Boolean.class,ip);
+        System.out.println("ip?"+t);
+        return t;
+    }
+
+    //查询访问量
+    @Override
+    public int find_num() {
+        String sql = "select num from website_nums where id = 1001";
+        return template.queryForObject(sql,Integer.class);
+    }
+
+//    查询访客数
+    @Override
+    public int find_count() {
+        String sql = "select counts from website_nums where id = 1001";
+        return template.queryForObject(sql,Integer.class);
+    }
+
+
 }

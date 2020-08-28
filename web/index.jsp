@@ -20,10 +20,22 @@
 
   <title>邱子林的博客</title>
   <script src="static/lib/jquery-3.5.1.js"></script>
+  <script src="static/js/platform.js"></script>
   <script>
+
+
     $(function () {
-      
-    })
+
+        var browser = platform.name;
+        var browser_ver = platform.version;
+        var os = platform.os.toString();
+
+        $.post("${pageContext.request.contextPath}/visitor",{"browser":browser,"browser_ver":browser_ver,"os":os},function (data) {
+            var visitor = $("#visitor");
+            visitor.html("访问量"+data.num+"&nbsp访客量"+data.counts);
+        });
+    });
+
   </script>
 </head>
 <body>
@@ -112,6 +124,8 @@
                 </div>
               </div>
             </c:forEach>
+
+<%--      分页--%>
     <div class="pagination">
       <ul class="list_ul">
       <c:if test="${pages.currentPage != 1}">
@@ -194,6 +208,8 @@
       <h4>关于作者</h4>
       <p>网络工程大二在读，分享技术博客</p>
       <p>感谢浏览</p>
+        <br>
+      <p>Copyright © /www.codeaper.cn All Rights Reserved.</p>
       <div class="icon">
         <ul class="icons">
           <li>
@@ -239,9 +255,8 @@
       <br>
       <p>互联网ICP备案号：<a href="http://www.beian.miit.gov.cn/" class="bei_an">赣ICP备20007779号</a></p>
       <br>
-      <p>Copyright © /www.codeaper.cn All Rights Reserved.</p>
-      <br>
-      <p id="htmer_time">
+        <p id="htmer_time"></p><br>
+      <p id="visitor"></p>
     </div>
   </div>
 </div>
