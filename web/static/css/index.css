@@ -242,9 +242,8 @@ button{
 
 .cover{
     float: left;
-    width: 240px;
+    width: 300px;
     height: 220px;
-    margin-left: 20px;
     text-align: center;
 }
 
@@ -267,11 +266,63 @@ button{
 
 .pagination{
     width: 100%;
-    height: 100px;
+    /*height: 100px;*/
     margin-left:auto;
     margin-top: 90px;
+    line-height: 50px;
 }
 
-@media screen and (max-width: 910px){
 
+@media screen and (max-width: 930px){
+    .main_content{
+        width: 100%;
+    }
+    .blogs{
+        position: relative;
+        width: 90%;
+        margin: 0 5%;
+    }
+
+    .blog{
+        width: 100%;
+        height: 260px;
+    }
+
+    .brief{
+        width: 100%;
+        height: 260px;
+    }
+
+    .brief_con{
+        word-break: break-all;
+        overflow: hidden;
+        height: 70px;
+        -webkit-line-clamp:4;
+        -webkit-box-orient: vertical;
+    }
+
+    .brief_main{
+        width: 100%;
+        height: 190px;
+    }
+
+    .items{
+        width: 100%;
+        display: flex;
+        font-size: 13px;
+    }
+
+    .item{
+        flex: 1;
+    }
+    .cover{
+        display: none;
+    }
+    .classfiy{
+        display: none;
+    }
+
+    .list_ul li{
+    }
 }
+

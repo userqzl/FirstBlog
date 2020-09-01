@@ -20,14 +20,30 @@
 <%--    <script src="static/lib/md_editor/lib/underscore.min.js"></script>--%>
 <%--    <script src="static/lib/md_editor/editormd.min.js"></script>--%>
 
-    <script src="static/lib/jquery-3.5.1.js"></script>
+    <script src="static/lib/jquery.min.js"></script>
+    <script src="static/js/platform.js"></script>
     <script src="static/lib/md_editor/editormd.js"></script>
     <script src="static/lib/md_editor/lib/marked.min.js"></script>
     <script src="static/lib/md_editor/lib/prettify.min.js"></script>
 
     <title>${blog.author} | ${blog.title}</title>
-</head>
+    <script>
 
+
+        $(function () {
+
+            var browser = platform.name;
+            var browser_ver = platform.version;
+            var os = platform.os.toString();
+
+            $.post("${pageContext.request.contextPath}/visitor",{"browser":browser,"browser_ver":browser_ver,"os":os},function (data) {
+                var visitor = $("#visitor");
+                visitor.html("访问量"+data.num+"&nbsp访客量"+data.counts);
+            });
+        });
+
+    </script>
+</head>
 <body>
 <!-- 导航栏 -->
 <nav>
@@ -35,7 +51,7 @@
         <a href="#">
             <div class="nav_logo">
                 <div class="logo_img">
-                    <img src="./static/imgs/my_logo.png">
+                    <img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/my_logo.png">
                     <div class="write_blog">
                         <a href="write_blog.html">写博客</a>
                     </div>
@@ -68,37 +84,13 @@
             ${blog.is_original}
         </div>
         <div class="title">
-            <h1>${blog.title}</h1>
+            ${blog.title}
         </div>
-        <div class="classfiy_list">
-            <ul>
-                <li>${blog.author}</li>
-                <li>
-                    <i>
-                        <img src="./static/imgs/time.png">
-                    </i>
-                    <span>${blog.create_date}</span>
-                </li>
-                <li>
-                    <i>
-                        <img src="./static/imgs/liulan.png">
-                    </i>
-                    <span>${blog.reading}</span>
-                </li>
-                <li>
-                    <i>
-                        <img src="./static/imgs/pinlun.png">
-                    </i>
-                    <span>3</span>
-                </li>
-                <li>
-                    <i>
-                        <img src="./static/imgs/dianzang.png">
-                    </i>
-                    <span>12</span>
-                </li>
-            </ul>
-        </div>
+            <div class="items">
+                <div class="author item">${blog.author}</div>
+                <div class="date item">${blog.create_date}</div>
+                <div class="read item">阅读(${blog.reading})</div>
+            </div>
     </div>
 <%--    博客内容--%>
     <hr>
@@ -117,36 +109,36 @@
             <h4>关于作者</h4>
             <p>网络工程大二在读，分享技术博客</p>
             <p>感谢浏览</p>
-            <div class="icon">
-                <ul class="icons">
-                    <li>
-                        <div class="icon">
-                            <a href="#" class="weixin_a"><img src="./static/imgs/weixin_icon.png" alt=""></a>
-                            <div class="weixin">
-                                <img src="./static/imgs/weixin.jpg" alt="">
-                            </div>
+            <br>
+            <p>Copyright © /www.codeaper.cn All Rights Reserved.</p>
+            <ul class="icons">
+                <li>
+                    <div class="weixin_a">
+                        <a href="#"><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/weixin_icon.png" alt=""></a>
+                        <div class="weixin">
+                            <img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/weixin.jpg" alt="">
                         </div>
-                    </li>
-                    <li>
-                        <div class="icon">
-                            <a href="#" ><img src="./static/imgs/bilibili_icon.png" alt=""></a>
-                            <div class="bilibili">
-                                <img src="./static/imgs/bilibili.png" alt="">
-                            </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="bilibili_a">
+                        <a href="#" ><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/bilibili_icon.png" alt=""></a>
+                        <div class="bilibili">
+                            <img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/bilibili.png" alt="">
                         </div>
-                    </li>
-                    <li>
-                        <div class="icon">
-                            <a href="#" id="email"><img src="./static/imgs/email_icon.png" alt=""></a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="icon">
-                            <a href="https://github.com/userqzl/"><img src="./static/imgs/github_icon.png" alt=""></a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <a href="#" id="email"><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/email_icon.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="icon">
+                        <a href="https://github.com/userqzl/"><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/github_icon.png" alt=""></a>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="foot_line"></div>
         <div class="copyright foot_div">
@@ -162,9 +154,8 @@
             <br>
             <p>互联网ICP备案号：<a href="http://www.beian.miit.gov.cn/" class="bei_an">赣ICP备20007779号</a></p>
             <br>
-            <p>Copyright © /www.codeaper.cn All Rights Reserved.</p>
-            <br>
-            <p id="htmer_time">
+            <p id="htmer_time"></p><br>
+            <p id="visitor"></p>
         </div>
     </div>
 </div>

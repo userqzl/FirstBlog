@@ -61,7 +61,12 @@ public class BlogDaoImpl implements BlogDao {
                     blog.getIs_delete(),
                     blog.getContent()
                     );
-            return sql_num1 > 0 && sql_num2 > 0;
+
+            //写入文章阅读量表
+            String sql3 = "insert into art_visitors_nums (art_id,reading) values (?,?)";
+            int sql_num3 = template.update(sql3,blog.getID(),0);
+
+            return sql_num1 > 0 && sql_num2 > 0 && sql_num3 > 0;
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -150,6 +155,7 @@ public class BlogDaoImpl implements BlogDao {
                 "  t1.author," +
                 "  t1.original_link," +
                 "  t1.is_original," +
+                "  t1.brief," +
                 "  t2.content," +
                 "  t3.reading " +
                 "FROM" +

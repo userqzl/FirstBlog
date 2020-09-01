@@ -55,11 +55,31 @@ p img{
 }
 
 .title{
-    position: absolute;
-    top: 40px;
-    width: 600px;
+    position: relative;
+    width: 400px;
     text-align: center;
-    margin-left: 200px;
+    margin:40px auto;
+    top: 40px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.items{
+    width: 800px;
+    height: 60px;
+    display: flex;
+    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+    left: 50%;
+    margin:90px auto;
+}
+
+.item{
+    flex: 1;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 1px;
+    font-weight: 300;
 }
 
 .classfiy_list{
@@ -80,4 +100,39 @@ p img{
     /*margin: 12px 0px;*/
     margin-left: 30px;
     font-family: "Microsoft YaHei", 微软雅黑;
+}
+
+@media screen and (max-width: 1000px){
+    .main_blog{
+        width: 98%;
+    }
+
+    .detail_head{
+        width: 100%;
+    }
+
+    .blog_content{
+        width: 100%;
+        margin-left: 10px;
+
+    }
+
+    #my-content{
+        width: 90%;
+    }
+
+    .is_origain{
+        display: none;
+    }
+
+    .items{
+        width: 100%;
+        display: flex;
+        font-size: 13px;
+    }
+
+    .item{
+        flex: 1;
+    }
+
 }

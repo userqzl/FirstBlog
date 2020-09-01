@@ -12,14 +12,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="./static/imgs/favicon.ico" type="image/x-icon">
+  <meta name="keywords" content="邱子林的博客,邱子林的个人博客,邱子林,个人博客,博客,Java程序员,Spring,Spring boot,Mybatis,JavaWeb,学习,日记">
+  <link rel="shortcut icon" href="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="stylesheet" href="./static/css/nav_footer.css">
 
   <link rel="stylesheet" href="./static/css/paging.css">
 
   <title>邱子林的博客</title>
-  <script src="static/lib/jquery-3.5.1.js"></script>
+  <script src="static/lib/jquery.min.js"></script>
   <script src="static/js/platform.js"></script>
   <script>
 
@@ -45,7 +46,7 @@
         <a href="#">
           <div class="nav_logo">
             <div class="logo_img">
-              <img src="./static/imgs/my_logo.png">
+              <img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/my_logo.png">
               <div class="write_blog">
                 <a href="write_blog.html">写博客</a>
               </div>
@@ -120,7 +121,7 @@
                 </div>
                   <%--          封面--%>
                 <div class="cover">
-                  <img src="./static/imgs/bg.jpg">
+                  <img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/bg.jpg">
                 </div>
               </div>
             </c:forEach>
@@ -210,36 +211,34 @@
       <p>感谢浏览</p>
         <br>
       <p>Copyright © /www.codeaper.cn All Rights Reserved.</p>
-      <div class="icon">
         <ul class="icons">
           <li>
-            <div class="icon">
-              <a href="#" class="weixin_a"><img src="./static/imgs/weixin_icon.png" alt=""></a>
+            <div class="weixin_a">
+              <a href="#"><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/weixin_icon.png" alt=""></a>
               <div class="weixin">
-                <img src="./static/imgs/weixin.jpg" alt="">
+                <img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/weixin.jpg" alt="">
               </div>
             </div>
           </li>
           <li>
-            <div class="icon">
-              <a href="#" ><img src="./static/imgs/bilibili_icon.png" alt=""></a>
+            <div class="bilibili_a">
+              <a href="#" ><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/bilibili_icon.png" alt=""></a>
               <div class="bilibili">
-                <img src="./static/imgs/bilibili.png" alt="">
+                <img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/bilibili.png" alt="">
               </div>
             </div>
           </li>
           <li>
             <div class="icon">
-              <a href="#" id="email"><img src="./static/imgs/email_icon.png" alt=""></a>
+              <a href="#" id="email"><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/email_icon.png" alt=""></a>
             </div>
           </li>
           <li>
             <div class="icon">
-              <a href="https://github.com/userqzl/"><img src="./static/imgs/github_icon.png" alt=""></a>
+              <a href="https://github.com/userqzl/"><img src="https://codeaper-cn.oss-cn-hangzhou.aliyuncs.com/github_icon.png" alt=""></a>
             </div>
           </li>
         </ul>
-      </div>
     </div>
     <div class="foot_line"></div>
     <div class="copyright foot_div">

@@ -54,6 +54,7 @@ public class InitServlet extends HttpServlet {
         //调用其他方法，查询其他参数
 
         req.setAttribute("pages",page);
+        System.out.println(page);
         //req.setAttribute("blogList",blogs);
         //转发到index.jsp
         req.getRequestDispatcher("index.jsp").forward(req,resp);
